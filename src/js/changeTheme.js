@@ -6,15 +6,15 @@ const Theme = {
 };
 
 const theme = localStorage.getItem('theme');
-console.log(theme); // "dark"
 
 if (theme === 'dark-theme') {
   refs.body.classList.add('dark-theme');
   refs.input.checked = true;
 }
 
-refs.input.addEventListener('change', () => {
-  console.log(refs.input.checked);
+refs.input.addEventListener('change', onInputChangeTheme);
+
+function onInputChangeTheme() {
   if (refs.input.checked) {
     changeClass();
     // refs.body.classList.add("dark-theme");
@@ -24,15 +24,15 @@ refs.input.addEventListener('change', () => {
     // refs.body.classList.add("light-theme");
     // refs.body.classList.remove("dark-theme");
     changeClass();
-    changeLockalStorage(Theme.DARK);
+    changeLockalStorage(Theme.LIGHT);
   }
-});
+}
 
-const changeLockalStorage = theme => {
+function changeLockalStorage(theme) {
   localStorage.setItem('theme', theme);
-};
+}
 
-const changeClass = () => {
+function changeClass() {
   refs.body.classList.toggle('dark-theme');
   refs.body.classList.toggle('light-theme');
-};
+}
